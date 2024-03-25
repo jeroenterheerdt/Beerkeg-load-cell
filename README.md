@@ -19,7 +19,9 @@ Has remote tare function which you can issue over MQTT if your sensor suffers fr
 
 * Phone charger and a micro usb cable
 
-* Some plywood or the 3d printed stl files located in the **3d files** folder
+* Some plywood or the 3d printed stl files located in the **3d files** folder.
+
+* If using plywood, also get these brackets: https://www.thingiverse.com/thing:2624188
 
 ### Libraries (for Arduino sketches only - recommended to use ESPHome version as it includes an auto-tare function as well)
 
