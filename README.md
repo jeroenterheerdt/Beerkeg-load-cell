@@ -17,13 +17,11 @@ Has remote tare function which you can issue over MQTT if your sensor suffers fr
 
 * Alt. [Wemos d1 mini](https://banggood.app.link/ihZgkZExs9)
 
-* [3d printed brackets](https://www.thingiverse.com/thing:2624188)
-
 * Phone charger and a micro usb cable
 
-* Some plywood or the stl files located in the **3d files** folder
+* Some plywood or the 3d printed stl files located in the **3d files** folder
 
-### Libraries
+### Libraries (for Arduino sketches only - recommended to use ESPHome version as it includes an auto-tare function as well)
 
 * [HX711](https://github.com/bogde/HX711)library - available through Arduino IDE library manager
 
@@ -83,12 +81,13 @@ Measure the resistance between the 3 wires, The pair with the highest resistance
 
 _explanation_
 
-To determine how to hook up your single strain gauge load cells to the PCB, measure the resistance with a multimeter between the three wires. You should find a larger resistance (close to double) between a pair. In our example, the resistance between black and white was 1.9 kΩ (i.e. 1900Ω), and the resistance between white and red was 900 Ω. Therefore, the center tap to the strain gauge is the white wire. The center tap or center pin of your strain gauge connects to the "C" pin on the PCB. The larger resistance wires (white and black in this example) connect to the "+" and "-" pins on the combinator.
+To determine how to hook up your single strain gauge load cells to the PCB, measure the resistance with a multimeter between the three wires. You should find a larger resistance (close to double) between a pair. In our example, the resistance between black and white was 1.9 kΩ (i.e. 1900Ω), and the resistance between white and red was 900 Ω. Therefore, the center tap to the strain gauge is the red wire. The center tap or center pin of your strain gauge connects to the "C" pin on the PCB. The larger resistance wires (white and black in this example) connect to the "+" and "-" pins on the combinator.
 
 The PCB board hooks up the four load sensors in such a way that two resistors in the wheatstone bridge configuration are constant values and the other two are variable.
 
 ## Software
 
+### Sketches
 Go ahead and fire up Arduino IDE and set your board to esp8266 (or whichever you are using) – set your board speed to 74880.
 
 Go to Sketch > Include Library > Manage Libraries and search for HX711 and install it.
@@ -136,6 +135,10 @@ Calibration Factor: 2400
 ...
 ```
 Don’t worry about the actual values, we will calibrate properly later.
+
+### ESPHome (preferred)
+
+The yaml file includes an auto-tare function, which was written by https://github.com/markusressel/ESPHome-Smart-Scale. You need to calibrate it same as the instruction below.
 
 ## Mounting
 
@@ -197,6 +200,8 @@ Place a weight on the bed again as a final test and make sure it is reading corr
 Now we can finish integrating our beerkeg sensor setup in Home Assistant!
 
 ## Home Assistant
+
+Rather than doing the below, if you are using ESPHome (recommended) this will all be taken care off.
 
 Open your configuration.yaml file and add a new entry:
 
